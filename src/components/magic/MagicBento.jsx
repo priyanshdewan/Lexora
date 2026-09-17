@@ -81,7 +81,7 @@ export const MagicBento = ({
       description: 'Prioritizes primary Acts, Central Regulations, and Notifications over subordinate circulars using BM25 and exact citation matching.',
       icon: Scale,
       tag: 'Tier 1 to 6 Ranking',
-      span: 'lg:col-span-2 lg:row-span-1',
+      span: 'col-span-1 row-span-1',
       accentColor: isDark ? 'text-blue-400' : 'text-blue-700'
     },
     {
@@ -91,7 +91,7 @@ export const MagicBento = ({
       description: 'Flags overlapping deadlines and statutory limitation discrepancies rather than silently picking arbitrary dates.',
       icon: AlertTriangle,
       tag: 'Conflict Engine',
-      span: 'lg:col-span-1 lg:row-span-1',
+      span: 'col-span-1 row-span-1',
       accentColor: isDark ? 'text-amber-400' : 'text-amber-700'
     },
     {
@@ -101,7 +101,7 @@ export const MagicBento = ({
       description: 'Synthesizes filing gates, statutory fees, registry locations, and chronological action steps grounded in section chunks.',
       icon: Layers,
       tag: 'Action Plan',
-      span: 'lg:col-span-1 lg:row-span-2',
+      span: 'col-span-1 row-span-1',
       accentColor: isDark ? 'text-cyan-400' : 'text-cyan-700'
     },
     {
@@ -111,7 +111,7 @@ export const MagicBento = ({
       description: 'Strictly halts generation when statutory backing is missing, issuing formal verification disclaimers without fabrication.',
       icon: ShieldCheck,
       tag: 'Grounding Firewall',
-      span: 'lg:col-span-1 lg:row-span-1',
+      span: 'col-span-1 row-span-1',
       accentColor: isDark ? 'text-emerald-400' : 'text-emerald-700'
     },
     {
@@ -121,7 +121,7 @@ export const MagicBento = ({
       description: 'Itemizes required certified copies, sworn affidavits, statutory receipts, and identity proofs for competent court registries.',
       icon: FileCheck,
       tag: 'Evidence Audit',
-      span: 'lg:col-span-2 lg:row-span-1',
+      span: 'col-span-1 row-span-1',
       accentColor: isDark ? 'text-blue-400' : 'text-blue-700'
     },
     {
@@ -131,7 +131,7 @@ export const MagicBento = ({
       description: 'Maps competent adjudicatory bodies, e-filing portals, and regional territorial limits across Indian consumer and commercial law.',
       icon: Building2,
       tag: 'Registry Gateways',
-      span: 'lg:col-span-1 lg:row-span-1',
+      span: 'col-span-1 row-span-1',
       accentColor: isDark ? 'text-slate-300' : 'text-slate-800'
     }
   ];
@@ -140,7 +140,7 @@ export const MagicBento = ({
     <div className="w-full">
       <div 
         ref={gridRef}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr"
       >
         {cards.map((card, idx) => {
           const Icon = card.icon;
@@ -352,7 +352,7 @@ const BentoCardItem = ({
   return (
     <div
       ref={cardRef}
-      className={`legal-bento-card relative rounded-xl border p-5 flex flex-col justify-between group cursor-pointer overflow-hidden transition-colors duration-200 ${card.span} ${
+      className={`legal-bento-card relative rounded-xl border p-5 flex flex-col justify-between group cursor-pointer overflow-hidden transition-colors duration-200 h-full min-h-[220px] ${card.span} ${
         isDark 
           ? 'bg-slate-900/80 border-slate-800 hover:border-slate-700 text-white' 
           : 'bg-white border-slate-200 hover:border-slate-300 text-slate-900 shadow-xs'
@@ -406,7 +406,7 @@ const BentoCardItem = ({
         <h3 className={`font-semibold text-sm tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
           {card.title}
         </h3>
-        <p className={`text-xs leading-relaxed ${textAutoHide ? 'line-clamp-2' : ''} ${
+        <p className={`text-xs leading-relaxed ${textAutoHide ? 'line-clamp-3' : ''} ${
           isDark ? 'text-slate-400' : 'text-slate-600'
         }`}>
           {card.description}

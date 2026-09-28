@@ -20,8 +20,6 @@ Lexora is an institutional procedural legal intelligence system engineered with 
 - **Strict Hallucination Prevention Firewall**: Operates on a verified statutory corpus. When provisions are missing or unverifiable, the system enforces a strict fallback: *"I could not find sufficient information in the provided legal documents to verify this requirement."*
 - **Split-Pane Agent Workspace**: Real-time agent thought stream, live millisecond retrieval metrics, and multi-tab dossier inspector.
 - **Knowledge Base & Corpus Uploader**: Comes pre-indexed with 6 foundational statutory codes and supports indexing custom acts and notifications.
-- **Magic Bento Interactive Interface**: Interactive spotlight overlays, reactive border glow, GSAP 3D perspective tilt, magnetic cursor tracking, and shockwave click feedback.
-- **Dual Mode Palette**: Dark mode and light mode with OS preference detection and local storage persistence.
 
 ---
 

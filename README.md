@@ -68,16 +68,6 @@ npm run preview -- --port 3000
 
 ---
 
-## Compliance and Design Standards
-
-- **Color Architecture**: Institutional slate, navy, and azure blue palette. Strict prohibition of purple gradients.
-- **Geometry**: Sharp geometric elements (`rounded-md` 4px radius). Zero pill-shaped buttons.
-- **Iconography**: Crisp Lucide vector SVGs. Zero emoji icons.
-- **Typography & Punctuation**: Clean system typography. Zero Unicode em dashes (\u2014). Hyphens and colons used exclusively.
-- **Data Integrity**: Real operational telemetry only. Zero vanity metrics, fake counters, or AI watermarks.
-
----
-
 ## License
 
 This project is licensed under the MIT License.

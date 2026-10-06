@@ -5,20 +5,20 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     try {
-      const saved = localStorage.getItem('legal_rag_theme');
-      if (saved) return saved;
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return 'light';
+      const saved = localStorage.getItem('lexora_theme');
+      if (saved === 'dark' || saved === 'light') {
+        return saved;
       }
     } catch (e) {
       console.warn('Could not read theme preference', e);
     }
-    return 'dark';
+    // Start with light mode by default, allowing user to shift to dark mode
+    return 'light';
   });
 
   useEffect(() => {
     try {
-      localStorage.setItem('legal_rag_theme', theme);
+      localStorage.setItem('lexora_theme', theme);
       if (theme === 'dark') {
         document.documentElement.classList.add('dark');
         document.documentElement.classList.remove('light');
@@ -32,7 +32,7 @@ export const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   const isDark = theme === 'dark';

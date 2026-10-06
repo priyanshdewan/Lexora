@@ -140,10 +140,18 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
             </div>
 
             <div className={`p-5 space-y-1 ${isDark ? 'bg-slate-950' : 'bg-white'}`}>
-              <span className="text-xs text-slate-400 font-sans">Retrieval Latency</span>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-slate-400 font-sans">Retrieval Latency</span>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+                </span>
+              </div>
               <div className="flex items-baseline space-x-2">
-                <span className={`text-2xl sm:text-3xl font-bold font-mono ${isDark ? 'text-white' : 'text-slate-900'}`}>32 ms</span>
-                <span className="text-xs text-rose-500 font-mono">Sub-second</span>
+                <span className={`text-2xl sm:text-3xl font-bold font-mono ${
+                  isDark ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-400 to-emerald-400' : 'text-slate-900'
+                }`}>32 ms</span>
+                <span className="text-xs text-cyan-500 font-mono font-medium">Sub-second</span>
               </div>
               <p className="text-[11px] text-slate-400">Multi-tier priority indexation</p>
             </div>

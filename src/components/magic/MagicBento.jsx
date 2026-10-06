@@ -270,9 +270,10 @@ const BentoCardItem = ({
       gsap.to(element, { 
         rotateX: 0, 
         rotateY: 0, 
+        scale: 1,
         x: 0, 
         y: 0, 
-        duration: 0.35, 
+        duration: 0.4, 
         ease: 'power2.out' 
       });
     };
@@ -285,13 +286,14 @@ const BentoCardItem = ({
       const centerY = rect.height / 2;
 
       if (enableTilt) {
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
+        const rotateX = ((y - centerY) / centerY) * -9;
+        const rotateY = ((x - centerX) / centerX) * 9;
         gsap.to(element, { 
           rotateX, 
           rotateY, 
-          duration: 0.15, 
-          ease: 'power1.out', 
+          scale: 1.02,
+          duration: 0.2, 
+          ease: 'power2.out', 
           transformPerspective: 1000 
         });
       }
@@ -352,6 +354,7 @@ const BentoCardItem = ({
   return (
     <div
       ref={cardRef}
+      style={{ transformStyle: 'preserve-3d' }}
       className={`legal-bento-card relative rounded-xl border p-5 flex flex-col justify-between group cursor-pointer overflow-hidden transition-colors duration-200 h-full min-h-[220px] ${card.span} ${
         isDark 
           ? 'bg-slate-900/80 border-slate-800 hover:border-slate-700 text-white' 
@@ -381,8 +384,11 @@ const BentoCardItem = ({
         />
       )}
 
-      {/* Header with Icon and Label */}
-      <div className="relative z-10 flex items-center justify-between">
+      {/* Header with Icon and Label - 3D Plane 1 */}
+      <div 
+        className="relative z-10 flex items-center justify-between"
+        style={{ transform: 'translateZ(20px)' }}
+      >
         <div className="flex items-center space-x-2">
           <div className={`w-8 h-8 rounded-md border flex items-center justify-center ${
             isDark ? 'bg-slate-950 border-slate-800 text-slate-200' : 'bg-slate-100 border-slate-200 text-slate-800'
@@ -401,8 +407,11 @@ const BentoCardItem = ({
         </span>
       </div>
 
-      {/* Title & Description */}
-      <div className="relative z-10 space-y-1.5 my-auto">
+      {/* Title & Description - 3D Plane 2 */}
+      <div 
+        className="relative z-10 space-y-1.5 my-auto"
+        style={{ transform: 'translateZ(28px)' }}
+      >
         <h3 className={`font-semibold text-sm tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
           {card.title}
         </h3>
@@ -413,8 +422,11 @@ const BentoCardItem = ({
         </p>
       </div>
 
-      {/* Footer Link / Explore indicator */}
-      <div className="relative z-10 pt-2 flex items-center justify-between border-t border-slate-850/30 text-[11px] font-medium text-slate-400 group-hover:text-blue-400 transition-colors">
+      {/* Footer Link / Explore indicator - 3D Plane 3 */}
+      <div 
+        className="relative z-10 pt-2 flex items-center justify-between border-t border-slate-850/30 text-[11px] font-medium text-slate-400 group-hover:text-blue-400 transition-colors"
+        style={{ transform: 'translateZ(14px)' }}
+      >
         <span className="flex items-center space-x-1">
           <span>Explore Architecture</span>
           <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />

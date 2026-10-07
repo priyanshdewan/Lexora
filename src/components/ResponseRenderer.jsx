@@ -8,12 +8,13 @@ import {
   Check, 
   FileCheck2,
   HelpCircle, 
-  ShieldAlert
+  ShieldAlert,
+  Scale
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext.jsx';
 import { MagicBox, MagicButton } from './magic/index.js';
 
-export const ResponseRenderer = ({ responseData }) => {
+export const ResponseRenderer = ({ responseData, onOpenNoticeDraft }) => {
   const { isDark } = useTheme();
   const [checkedDocs, setCheckedDocs] = useState({});
   const [copied, setCopied] = useState(false);
@@ -68,19 +69,31 @@ export const ResponseRenderer = ({ responseData }) => {
     <div className={`space-y-6 animate-none ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
 
       {/* Top Action Bar */}
-      <div className={`flex items-center justify-between pb-3 border-b ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
+      <div className={`flex flex-wrap items-center justify-between pb-3 border-b gap-2 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
         <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
           <FileCheck2 className={`w-4 h-4 ${isDark ? 'text-slate-300' : 'text-slate-600'}`} />
           <span>Procedural Dossier: 10-Section Legal Specification</span>
         </div>
-        <MagicButton
-          variant="secondary"
-          size="sm"
-          icon={copied ? Check : Copy}
-          onClick={handleCopy}
-        >
-          {copied ? "Dossier Copied" : "Copy Full Report"}
-        </MagicButton>
+        <div className="flex items-center space-x-2">
+          {onOpenNoticeDraft && (
+            <MagicButton
+              variant="primary"
+              size="sm"
+              icon={Scale}
+              onClick={onOpenNoticeDraft}
+            >
+              Draft Legal Notice
+            </MagicButton>
+          )}
+          <MagicButton
+            variant="secondary"
+            size="sm"
+            icon={copied ? Check : Copy}
+            onClick={handleCopy}
+          >
+            {copied ? "Dossier Copied" : "Copy Full Report"}
+          </MagicButton>
+        </div>
       </div>
 
       {/* Conflict Detection Banner */}
@@ -188,7 +201,7 @@ export const ResponseRenderer = ({ responseData }) => {
                   isDark ? 'bg-slate-950/90 border-slate-800' : 'bg-slate-50 border-slate-200'
                 }`}
               >
-                <div className={`flex items-start justify-between border-b pb-2.5 ${
+                <div className={`flex flex-wrap items-center justify-between border-b pb-2.5 gap-2 ${
                   isDark ? 'border-slate-850' : 'border-slate-200'
                 }`}>
                   <div className="flex items-center space-x-2">
@@ -199,6 +212,20 @@ export const ResponseRenderer = ({ responseData }) => {
                     </span>
                     <h4 className={`font-semibold text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>{step.action}</h4>
                   </div>
+
+                  {onOpenNoticeDraft && (step.action.toLowerCase().includes('notice') || step.stepNumber === 1) && (
+                    <button
+                      onClick={onOpenNoticeDraft}
+                      className={`text-xs font-semibold px-2.5 py-1 rounded border flex items-center space-x-1.5 transition-colors ${
+                        isDark 
+                          ? 'bg-blue-950/70 hover:bg-blue-900/80 border-blue-800 text-blue-300' 
+                          : 'bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-700 shadow-2xs'
+                      }`}
+                    >
+                      <Scale className="w-3.5 h-3.5 text-blue-500" />
+                      <span>Draft Notice for Step {step.stepNumber}</span>
+                    </button>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">

@@ -13,6 +13,8 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { ResponseRenderer } from './ResponseRenderer.jsx';
+import { LegalNoticeDrafter } from './LegalNoticeDrafter.jsx';
+import { Scale } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext.jsx';
 import { MagicBox, MagicButton, MagicBento } from './magic/index.js';
 
@@ -154,6 +156,18 @@ export const DossierPane = ({ responseData, isLoading, onSelectScenario }) => {
           </MagicButton>
 
           <MagicButton
+            variant={activeTab === 'notice' ? 'primary' : 'ghost'}
+            size="sm"
+            icon={Scale}
+            onClick={() => setActiveTab('notice')}
+          >
+            <span>Draft Legal Notice</span>
+            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded font-semibold bg-amber-500/20 text-amber-500 ml-1">
+              Pleading
+            </span>
+          </MagicButton>
+
+          <MagicButton
             variant={activeTab === 'checklist' ? 'primary' : 'ghost'}
             size="sm"
             icon={CheckSquare}
@@ -215,7 +229,11 @@ export const DossierPane = ({ responseData, isLoading, onSelectScenario }) => {
       {/* Dossier Body Content */}
       <div className="flex-1 overflow-y-auto p-5">
         {activeTab === 'dossier' && (
-          <ResponseRenderer responseData={responseData} />
+          <ResponseRenderer responseData={responseData} onOpenNoticeDraft={() => setActiveTab('notice')} />
+        )}
+
+        {activeTab === 'notice' && (
+          <LegalNoticeDrafter responseData={responseData} />
         )}
 
         {activeTab === 'bento' && (

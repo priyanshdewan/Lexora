@@ -10,6 +10,9 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext.jsx';
 import { MagicBox, MagicButton } from './magic/index.js';
+import { ThreeSpatialHero } from './canvas/ThreeSpatialHero.jsx';
+import { BasementMarquee } from './ui/BasementMarquee.jsx';
+import { Cpu, Terminal } from 'lucide-react';
 
 export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount }) => {
   const { isDark } = useTheme();
@@ -44,9 +47,9 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
   return (
     <div className="space-y-12 max-w-6xl mx-auto px-4 pt-8 pb-12">
       
-      {/* Hero Header matching Image 1 */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
-        <div className="max-w-xl space-y-4">
+      {/* Hero Header with Three.js Spatial Kernel */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-2">
+        <div className="lg:col-span-7 space-y-4">
           <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-md border text-xs font-mono font-medium tracking-wide uppercase transition-colors shadow-2xs ${
             isDark ? 'bg-blue-950/70 border-blue-800/80 text-blue-300' : 'bg-blue-50 border-blue-200 text-blue-700'
           }`}>
@@ -68,28 +71,53 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
             </span>
           </h1>
 
-          <p className={`text-sm sm:text-base leading-relaxed font-normal ${
+          <p className={`text-sm sm:text-base leading-relaxed font-normal max-w-xl ${
             isDark ? 'text-slate-300' : 'text-slate-600'
           }`}>
             Deterministic RAG architecture synthesized across Indian statutes, limitation windows, and court registry gates with source-grounded verification.
           </p>
+
+          <div className="pt-2 flex flex-wrap items-center gap-3">
+            <MagicButton
+              variant="primary"
+              size="lg"
+              onClick={() => onSelectQuery(cases[0].query)}
+              className="font-semibold shadow-md"
+            >
+              <span>Start Legal Analysis</span>
+              <ArrowRight className="w-4 h-4" />
+            </MagicButton>
+
+            <button
+              onClick={() => onNavigateToView('performance')}
+              className={`px-4 py-2.5 rounded-md text-sm font-semibold border flex items-center space-x-2 transition-all ${
+                isDark 
+                  ? 'bg-slate-900 hover:bg-slate-800 border-slate-750 text-slate-300' 
+                  : 'bg-white hover:bg-slate-50 border-slate-300 text-slate-700 shadow-2xs'
+              }`}
+            >
+              <Cpu className="w-4 h-4 text-blue-500" />
+              <span>3D Architecture</span>
+            </button>
+          </div>
         </div>
 
-        <div className="max-w-sm space-y-4">
-          <p className={`text-xs sm:text-sm leading-relaxed font-sans ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-            Automate statutory analysis, document checklists, and submission timelines grounded in official legislation in real time.
-          </p>
-          <MagicButton
-            variant="primary"
-            size="lg"
-            onClick={() => onSelectQuery(cases[0].query)}
-            className="font-semibold shadow-md"
-          >
-            <span>Start Legal Analysis</span>
-            <ArrowRight className="w-4 h-4" />
-          </MagicButton>
+        {/* Right: Three.js Interactive 3D Spatial Geometry */}
+        <div className="lg:col-span-5 relative flex items-center justify-center">
+          <div className="w-full h-80 sm:h-96 relative rounded-xl border border-slate-200/50 dark:border-slate-800/50 bg-slate-100/30 dark:bg-slate-900/20 backdrop-blur-xs overflow-hidden">
+            {/* Ambient radial glow */}
+            <div className="absolute inset-0 rounded-full bg-blue-500/10 dark:bg-cyan-500/10 blur-3xl pointer-events-none" />
+            <ThreeSpatialHero />
+            <div className="absolute bottom-2.5 right-3 text-[10px] font-mono text-slate-400 dark:text-slate-500 pointer-events-none flex items-center space-x-1.5 select-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+              <span>DRAG TO ROTATE 3D KERNEL</span>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Basement Studio Inspired Brutalist Marquee Tape */}
+      <BasementMarquee />
 
       {/* Central Framed Dashboard Preview Container */}
       <div className={`relative rounded-xl p-2 sm:p-3 border shadow-2xl transition-all duration-300 ${

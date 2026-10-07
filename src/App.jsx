@@ -6,6 +6,10 @@ import { KnowledgeBaseView } from './components/KnowledgeBaseView.jsx';
 import { PrivacyPolicyView } from './components/PrivacyPolicyView.jsx';
 import { TermsView } from './components/TermsView.jsx';
 import { DomainSettingsModal } from './components/DomainSettingsModal.jsx';
+import { LenisProvider } from './components/smooth/LenisProvider.jsx';
+import { CommandPalette } from './components/ui/CommandPalette.jsx';
+import { TelemetryStatusBar } from './components/ui/TelemetryStatusBar.jsx';
+import { Search, Command } from 'lucide-react';
 import { ragEngine } from './services/ragEngine.js';
 import { 
   Scale, 
@@ -30,6 +34,7 @@ export function App() {
   const [isDomainModalOpen, setIsDomainModalOpen] = useState(false);
   const [selectedScenarioQuery, setSelectedScenarioQuery] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
 
   const [currentDomain, setCurrentDomain] = useState(() => {
     return localStorage.getItem('legal_rag_custom_domain') || 'legal-rag.internal';
@@ -50,7 +55,8 @@ export function App() {
   };
 
   return (
-    <div className={`min-h-screen relative font-sans selection:bg-blue-600 selection:text-white flex flex-col transition-colors duration-200 ${
+    <LenisProvider>
+      <div className={`min-h-screen relative font-sans selection:bg-blue-600 selection:text-white flex flex-col transition-colors duration-200 ${
       isDark ? 'bg-[#080c14] text-slate-100' : 'bg-[#f8fafc] text-slate-900'
     }`}>
       
@@ -173,8 +179,26 @@ export function App() {
           </button>
         </nav>
 
-        {/* Right CTA, Custom Domain & Theme Switcher */}
+        {/* Right CTA, Command Search & Theme Switcher */}
         <div className="flex items-center space-x-2">
+          {/* Quick Command Launcher button */}
+          <button
+            onClick={() => setIsCommandPaletteOpen(true)}
+            className={`hidden lg:flex items-center space-x-2 px-2.5 py-1.5 border rounded-md text-xs font-mono transition-colors ${
+              isDark 
+                ? 'bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-300' 
+                : 'bg-white hover:bg-slate-50 border-slate-300 text-slate-600 shadow-2xs'
+            }`}
+            title="Open Command Kernel (Ctrl+K)"
+          >
+            <Search className="w-3.5 h-3.5 text-blue-500" />
+            <span>Search or jump...</span>
+            <kbd className={`px-1.5 py-0.2 rounded border text-[10px] ${
+              isDark ? 'bg-slate-800 border-slate-700 text-slate-400' : 'bg-slate-100 border-slate-300 text-slate-600'
+            }`}>
+              ⌘K
+            </kbd>
+          </button>
           <button
             onClick={toggleTheme}
             className={`p-2 border rounded-md transition-all flex items-center justify-center ${
@@ -383,6 +407,18 @@ export function App() {
         onSaveDomain={handleSaveDomain}
       />
 
-    </div>
+      {/* 21st.dev / unicorn.studio Command Palette Terminal */}
+      <CommandPalette
+        isOpen={isCommandPaletteOpen}
+        onClose={() => setIsCommandPaletteOpen(false)}
+        onSelectScenario={handleSelectQueryFromHero}
+        onNavigate={setCurrentView}
+      />
+
+      {/* Basement Studio Sticky Bottom Telemetry Status HUD */}
+      <TelemetryStatusBar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
+
+      </div>
+    </LenisProvider>
   );
 }

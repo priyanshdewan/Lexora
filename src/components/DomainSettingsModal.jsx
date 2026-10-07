@@ -32,14 +32,32 @@ export const DomainSettingsModal = ({ isOpen, onClose, currentDomain, onSaveDoma
         <div className={`px-6 py-4 border-b flex items-center justify-between ${
           isDark ? 'border-slate-800 bg-slate-850' : 'border-slate-200 bg-slate-50'
         }`}>
-          <div className="flex items-center space-x-2">
-            <Globe className={`w-5 h-5 ${isDark ? 'text-slate-300' : 'text-slate-700'}`} />
-            <h2 className={`text-base font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Custom Domain Configuration</h2>
+          <div className="flex items-center space-x-2.5">
+            <div className={`w-8 h-8 rounded-md border flex items-center justify-center ${
+              isDark ? 'bg-blue-950/80 border-blue-800 text-blue-400' : 'bg-blue-600 border-blue-700 text-white'
+            }`}>
+              <Globe className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="flex items-center space-x-2">
+                <h2 className={`text-base font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-950'}`}>
+                  Custom Domain Configuration
+                </h2>
+                <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded border font-semibold ${
+                  isDark ? 'bg-blue-950/70 border-blue-800 text-blue-300' : 'bg-blue-50 border-blue-200 text-blue-700'
+                }`}>
+                  Gateway
+                </span>
+              </div>
+              <p className={`text-[11px] ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                DNS Hostname, SSL Termination & Internal Routing
+              </p>
+            </div>
           </div>
           <button 
             onClick={onClose}
-            className={`p-1 rounded-md transition-colors ${
-              isDark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'
+            className={`p-1.5 rounded-md transition-colors ${
+              isDark ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <X className="w-5 h-5" />
@@ -134,13 +152,13 @@ export const DomainSettingsModal = ({ isOpen, onClose, currentDomain, onSaveDoma
             </button>
             <button
               type="submit"
-              className={`px-4 py-2 text-xs font-medium border rounded-md transition-colors flex items-center space-x-1.5 ${
-                isDark ? 'text-white bg-slate-700 hover:bg-slate-600 border-slate-600' : 'text-white bg-slate-900 hover:bg-slate-800 border-slate-900'
+              className={`px-4 py-2 text-xs font-semibold border rounded-md transition-all flex items-center space-x-1.5 shadow-xs ${
+                isDark ? 'text-white bg-blue-600 hover:bg-blue-500 border-blue-500 shadow-blue-900/30' : 'text-white bg-blue-600 hover:bg-blue-700 border-blue-700'
               }`}
             >
               {isSaved ? (
                 <>
-                  <Check className="w-4 h-4 text-emerald-400" />
+                  <Check className="w-4 h-4 text-emerald-300" />
                   <span>Domain Saved</span>
                 </>
               ) : (

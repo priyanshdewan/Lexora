@@ -88,31 +88,40 @@ export const KnowledgeBaseView = ({ onCorpusUpdated }) => {
       isDark ? 'text-slate-100' : 'text-slate-900'
     }`}>
       
-      {/* Top Banner with Real Metrics Only (No fake customer numbers) */}
-      <div className={`flex flex-col md:flex-row md:items-center justify-between pb-6 border-b gap-4 ${
+      {/* Top Banner with Real Metrics Only */}
+      <div className={`flex flex-col md:flex-row md:items-end justify-between pb-6 border-b gap-4 ${
         isDark ? 'border-slate-800' : 'border-slate-200'
       }`}>
-        <div>
-          <div className={`flex items-center space-x-2 text-xs font-mono uppercase tracking-wider mb-1 ${
-            isDark ? 'text-slate-400' : 'text-slate-500'
+        <div className="space-y-3">
+          <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-md border text-xs font-mono font-medium tracking-wide uppercase transition-colors shadow-2xs ${
+            isDark ? 'bg-blue-950/70 border-blue-800/80 text-blue-300' : 'bg-blue-50 border-blue-200 text-blue-700'
           }`}>
-            <Database className={`w-4 h-4 ${isDark ? 'text-slate-300' : 'text-slate-600'}`} />
-            <span>Statutory Knowledge Base and Document Store</span>
+            <Database className="w-3.5 h-3.5 text-blue-500" />
+            <span>Primary Statute Store & Vector Index</span>
           </div>
-          <h1 className={`text-2xl sm:text-3xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
-            Legal Corpus Repository
+
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-sans">
+            <span className={isDark ? 'text-white' : 'text-slate-950'}>Statutory </span>
+            <span className={
+              isDark 
+                ? 'bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-300 bg-clip-text text-transparent' 
+                : 'bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent'
+            }>
+              Legal Corpus
+            </span>
           </h1>
-          <p className={`text-xs mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-            Indexed primary legal sources used for RAG retrieval and citation grounding.
+
+          <p className={`text-xs sm:text-sm max-w-xl leading-relaxed font-normal ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+            Indexed primary Indian legal sources, sections, limitation periods, and statutory fee schedules used for deterministic RAG retrieval.
           </p>
         </div>
 
         <button
           onClick={() => setShowAddModal(true)}
-          className={`flex items-center space-x-2 px-4 py-2 border rounded-md text-xs font-medium transition-colors self-start md:self-auto ${
+          className={`flex items-center space-x-2 px-4 py-2 border rounded-md text-xs font-semibold transition-all self-start md:self-auto shadow-xs ${
             isDark 
-              ? 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-slate-200' 
-              : 'bg-slate-900 hover:bg-slate-800 border-slate-900 text-white shadow-xs'
+              ? 'bg-blue-600 hover:bg-blue-500 border-blue-500 text-white shadow-blue-900/30' 
+              : 'bg-blue-600 hover:bg-blue-700 border-blue-700 text-white'
           }`}
         >
           <Plus className="w-4 h-4" />

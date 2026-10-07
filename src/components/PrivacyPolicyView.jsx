@@ -11,18 +11,27 @@ export const PrivacyPolicyView = () => {
     }`}>
       
       {/* Header */}
-      <div className={`border-b pb-6 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
-        <div className={`flex items-center space-x-2 text-xs font-mono uppercase tracking-wider mb-2 ${
-          isDark ? 'text-slate-400' : 'text-slate-500'
+      <div className={`border-b pb-6 space-y-3 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
+        <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-md border text-xs font-mono font-medium tracking-wide uppercase transition-colors shadow-2xs ${
+          isDark ? 'bg-blue-950/70 border-blue-800/80 text-blue-300' : 'bg-blue-50 border-blue-200 text-blue-700'
         }`}>
-          <ShieldCheck className={`w-4 h-4 ${isDark ? 'text-slate-300' : 'text-slate-600'}`} />
+          <ShieldCheck className="w-3.5 h-3.5 text-blue-500" />
           <span>Governance and Compliance Protocol</span>
         </div>
-        <h1 className={`text-2xl sm:text-3xl font-bold tracking-tight ${
-          isDark ? 'text-white' : 'text-slate-900'
-        }`}>Privacy Policy</h1>
-        <p className={`text-sm mt-2 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-          Effective Date: September 15, 2026. Official Data Protection and Document Retention Notice.
+        
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-sans">
+          <span className={isDark ? 'text-white' : 'text-slate-950'}>Privacy & Data </span>
+          <span className={
+            isDark 
+              ? 'bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-300 bg-clip-text text-transparent' 
+              : 'bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent'
+          }>
+            Governance Policy
+          </span>
+        </h1>
+
+        <p className={`text-xs sm:text-sm font-normal ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+          Effective Date: September 15, 2026. Ephemeral session governance, strict confidentiality, and zero data retention standards.
         </p>
       </div>
 

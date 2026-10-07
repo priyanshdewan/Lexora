@@ -46,16 +46,32 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
       
       {/* Hero Header matching Image 1 */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
-        <div className="max-w-xl space-y-3">
-          <div className="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-slate-400">
-            <Scale className={`w-4 h-4 ${isDark ? 'text-slate-300' : 'text-slate-700'}`} />
-            <span>Lexora: Procedural Legal Platform</span>
+        <div className="max-w-xl space-y-4">
+          <div className={`inline-flex items-center space-x-2 px-3 py-1 rounded-md border text-xs font-mono font-medium tracking-wide uppercase transition-colors shadow-2xs ${
+            isDark ? 'bg-blue-950/70 border-blue-800/80 text-blue-300' : 'bg-blue-50 border-blue-200 text-blue-700'
+          }`}>
+            <Scale className="w-3.5 h-3.5 text-blue-500" />
+            <span>Procedural Legal Intelligence Engine</span>
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
           </div>
-          <h1 className={`text-3xl sm:text-5xl font-bold tracking-tight leading-tight font-sans ${isDark ? 'text-white' : 'text-slate-900'}`}>
-            Build Systems That Think and Act
+          
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] font-sans">
+            <span className={isDark ? 'text-white' : 'text-slate-950'}>
+              Build Systems That{' '}
+            </span>
+            <span className={
+              isDark 
+                ? 'bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-300 bg-clip-text text-transparent' 
+                : 'bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent'
+            }>
+              Think and Act
+            </span>
           </h1>
-          <p className="text-xs text-slate-400 font-mono">
-            Lexora Source-Grounded Procedural Legal Guidance Engine
+
+          <p className={`text-sm sm:text-base leading-relaxed font-normal ${
+            isDark ? 'text-slate-300' : 'text-slate-600'
+          }`}>
+            Deterministic RAG architecture synthesized across Indian statutes, limitation windows, and court registry gates with source-grounded verification.
           </p>
         </div>
 
@@ -222,12 +238,27 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
 
             {/* Right: Active Legal Cases */}
             <div className={`lg:col-span-5 p-6 space-y-4 ${isDark ? 'bg-slate-950' : 'bg-white'}`}>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between pb-1 border-b border-slate-200/60 dark:border-slate-800/60">
                 <div>
-                  <h3 className={`font-semibold text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>Verified Legal Scenarios</h3>
-                  <p className="text-xs text-slate-400">Click any matter to run instant procedural analysis</p>
+                  <div className="flex items-center space-x-2">
+                    <h3 className={`font-bold text-sm sm:text-base tracking-tight ${isDark ? 'text-white' : 'text-slate-950'}`}>
+                      Verified Statutory Scenarios
+                    </h3>
+                    <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded border font-semibold ${
+                      isDark ? 'bg-emerald-950/70 border-emerald-800 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-700'
+                    }`}>
+                      Live Corpus
+                    </span>
+                  </div>
+                  <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    Select a dispute scenario to execute deterministic RAG extraction
+                  </p>
                 </div>
-                <span className="text-xs font-mono text-slate-400">4 Scenarios</span>
+                <span className={`text-xs font-mono px-2 py-0.5 rounded border ${
+                  isDark ? 'bg-slate-900 border-slate-800 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-600'
+                }`}>
+                  4 Scenarios
+                </span>
               </div>
 
               <div className="space-y-2">

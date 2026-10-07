@@ -90,11 +90,29 @@ export const AssistantView = ({ selectedScenarioQuery, onClearSelectedQuery }) =
         
         {/* Header bar */}
         <div className={`p-4 border-b shrink-0 flex items-center justify-between ${
-          isDark ? 'border-slate-850 bg-slate-900/40' : 'border-slate-200 bg-slate-50'
+          isDark ? 'border-slate-850 bg-slate-900/60' : 'border-slate-200 bg-slate-50/90'
         }`}>
-          <div className="flex items-center space-x-2">
-            <Scale className={`w-4 h-4 ${isDark ? 'text-slate-300' : 'text-slate-700'}`} />
-            <h2 className={`text-sm font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Procedural Legal Agent</h2>
+          <div className="flex items-center space-x-2.5">
+            <div className={`w-8 h-8 rounded-md border flex items-center justify-center ${
+              isDark ? 'bg-blue-950/80 border-blue-800 text-blue-400' : 'bg-blue-600 border-blue-700 text-white'
+            }`}>
+              <Scale className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="flex items-center space-x-2">
+                <h2 className={`text-sm font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-950'}`}>
+                  Procedural Legal Agent
+                </h2>
+                <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded border font-semibold ${
+                  isDark ? 'bg-emerald-950/70 border-emerald-800 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-700'
+                }`}>
+                  Grounded
+                </span>
+              </div>
+              <p className={`text-[10px] ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                10-Step Statutory Synthesis & Cross-Conflict Engine
+              </p>
+            </div>
           </div>
 
           <MagicButton

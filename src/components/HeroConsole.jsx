@@ -91,14 +91,14 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
         </div>
       </div>
 
-      {/* Central Framed Dashboard Preview Container matching Image 1 */}
-      <div className={`relative rounded-lg p-2 sm:p-4 border shadow-2xl ${
+      {/* Central Framed Dashboard Preview Container */}
+      <div className={`relative rounded-xl p-2 sm:p-3 border shadow-2xl transition-all duration-300 ${
         isDark 
-          ? 'bg-gradient-to-r from-amber-500/20 via-rose-500/20 to-orange-500/20 border-slate-750' 
-          : 'bg-gradient-to-r from-amber-100/60 via-rose-100/60 to-orange-100/60 border-slate-200'
+          ? 'bg-slate-900/50 border-slate-800 shadow-blue-950/20 ring-1 ring-white/5' 
+          : 'bg-slate-100/70 border-slate-200 shadow-xl shadow-slate-250/50 ring-1 ring-slate-900/5'
       }`}>
-        <div className={`rounded-md border overflow-hidden ${
-          isDark ? 'bg-slate-950 border-slate-800 text-slate-100' : 'bg-white border-slate-200 text-slate-900'
+        <div className={`rounded-lg border overflow-hidden ${
+          isDark ? 'bg-slate-950 border-slate-800/90 text-slate-100' : 'bg-white border-slate-200 text-slate-900 shadow-xs'
         }`}>
           
           {/* Top Dashboard Header */}
@@ -197,8 +197,8 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
                 <svg className="w-full h-full" viewBox="0 0 500 150" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="heroCurveGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#f43f5e" stopOpacity="0.25" />
-                      <stop offset="100%" stopColor="#f43f5e" stopOpacity="0.0" />
+                      <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.25" />
+                      <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.0" />
                     </linearGradient>
                   </defs>
                   
@@ -214,14 +214,14 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
                   <path
                     d="M 0 130 L 60 110 L 140 120 L 220 70 L 300 95 L 380 40 L 440 60 L 500 20"
                     fill="none"
-                    stroke="#fb7185"
+                    stroke={isDark ? "#38bdf8" : "#0284c7"}
                     strokeWidth="2.5"
                     strokeLinecap="round"
                   />
 
-                  <circle cx="220" cy="70" r="4" fill="#fb7185" />
-                  <circle cx="380" cy="40" r="4" fill="#fb7185" />
-                  <circle cx="500" cy="20" r="4" fill="#fb7185" />
+                  <circle cx="220" cy="70" r="4" fill={isDark ? "#38bdf8" : "#0284c7"} />
+                  <circle cx="380" cy="40" r="4" fill={isDark ? "#38bdf8" : "#0284c7"} />
+                  <circle cx="500" cy="20" r="4" fill={isDark ? "#38bdf8" : "#0284c7"} />
                 </svg>
 
                 <div className={`flex justify-between text-[10px] font-mono pt-2 border-t ${

@@ -122,8 +122,8 @@ export const MagicButton = ({
   let variantClasses = '';
   if (variant === 'primary') {
     variantClasses = isDark
-      ? 'bg-slate-800 hover:bg-slate-750 text-white border border-slate-700 shadow-sm'
-      : 'bg-slate-900 hover:bg-slate-800 text-white border border-slate-900 shadow-sm';
+      ? 'bg-blue-600 hover:bg-blue-500 text-white border border-blue-500 shadow-sm shadow-blue-900/40'
+      : 'bg-blue-600 hover:bg-blue-700 text-white border border-blue-700 shadow-xs shadow-blue-500/20';
   } else if (variant === 'secondary') {
     variantClasses = isDark
       ? 'bg-slate-900 hover:bg-slate-850 text-slate-200 border border-slate-800'
@@ -149,7 +149,7 @@ export const MagicButton = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`magic-btn relative overflow-hidden rounded-md font-medium transition-colors select-none inline-flex items-center justify-center space-x-1.5 disabled:opacity-50 disabled:cursor-not-allowed group ${variantClasses} ${sizeClasses} ${className}`}
+      className={`magic-btn relative overflow-hidden rounded-md font-semibold transition-all duration-150 active:scale-[0.98] active:translate-y-px focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 select-none inline-flex items-center justify-center space-x-1.5 disabled:opacity-50 disabled:cursor-not-allowed group ${variantClasses} ${sizeClasses} ${className}`}
       {...props}
     >
       {/* Spotlight highlight over button */}

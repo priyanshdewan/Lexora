@@ -50,10 +50,20 @@ export function App() {
   };
 
   return (
-    <div className={`min-h-screen font-sans selection:bg-rose-900/50 selection:text-white flex flex-col transition-colors duration-200 ${
+    <div className={`min-h-screen relative font-sans selection:bg-blue-600 selection:text-white flex flex-col transition-colors duration-200 ${
       isDark ? 'bg-[#080c14] text-slate-100' : 'bg-[#f8fafc] text-slate-900'
     }`}>
       
+      {/* Subtle ambient micro-pattern to break digital flatness */}
+      <div 
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none z-0 opacity-[0.035] dark:opacity-[0.05]"
+        style={{
+          backgroundImage: `radial-gradient(currentColor 1px, transparent 1px)`,
+          backgroundSize: '24px 24px'
+        }}
+      />
+
       {/* Top Navbar */}
       <header className={`sticky top-0 z-40 h-16 border-b backdrop-blur-md px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-colors duration-200 ${
         isDark ? 'border-slate-800/90 bg-[#080c14]/90 text-slate-100' : 'border-slate-200/90 bg-white/95 text-slate-900 shadow-xs'

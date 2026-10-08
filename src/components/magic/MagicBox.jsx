@@ -35,6 +35,8 @@ export const MagicBox = ({
   // Institutional legal glow: Azure blue in dark mode, cobalt in light mode (NEVER PURPLE)
   const effectiveGlowColor = glowColor || (isDark ? '59, 130, 246' : '37, 99, 235');
 
+  const isReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const clearAllParticles = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
@@ -105,20 +107,22 @@ export const MagicBox = ({
 
     const handleMouseEnter = () => {
       isHoveredRef.current = true;
-      if (enableStars) animateParticles();
+      if (enableStars && !isReducedMotion) animateParticles();
     };
 
     const handleMouseLeave = () => {
       isHoveredRef.current = false;
-      if (enableStars) clearAllParticles();
-      gsap.to(element, { 
-        rotateX: 0, 
-        rotateY: 0, 
-        x: 0, 
-        y: 0, 
-        duration: 0.35, 
-        ease: 'power2.out' 
-      });
+      if (enableStars && !isReducedMotion) clearAllParticles();
+      if (!isReducedMotion) {
+        gsap.to(element, { 
+          rotateX: 0, 
+          rotateY: 0, 
+          x: 0, 
+          y: 0, 
+          duration: 0.35, 
+          ease: 'power2.out' 
+        });
+      }
     };
 
     const handleMouseMove = (e) => {
@@ -134,27 +138,29 @@ export const MagicBox = ({
       element.style.setProperty('--spotlight-radius', `${spotlightRadius}px`);
       element.style.setProperty('--glow-rgb', effectiveGlowColor);
 
-      if (enableTilt && window.innerWidth > 768) {
-        const rotateX = ((y - centerY) / centerY) * -4;
-        const rotateY = ((x - centerX) / centerX) * 4;
-        gsap.to(element, { 
-          rotateX, 
-          rotateY, 
-          duration: 0.15, 
-          ease: 'power1.out', 
-          transformPerspective: 1000 
-        });
-      }
+      if (!isReducedMotion) {
+        if (enableTilt && window.innerWidth > 768) {
+          const rotateX = ((y - centerY) / centerY) * -4;
+          const rotateY = ((x - centerX) / centerX) * 4;
+          gsap.to(element, { 
+            rotateX, 
+            rotateY, 
+            duration: 0.15, 
+            ease: 'power1.out', 
+            transformPerspective: 1000 
+          });
+        }
 
-      if (enableMagnetism && window.innerWidth > 768) {
-        const magnetX = (x - centerX) * 0.025;
-        const magnetY = (y - centerY) * 0.025;
-        magnetismAnimationRef.current = gsap.to(element, { 
-          x: magnetX, 
-          y: magnetY, 
-          duration: 0.25, 
-          ease: 'power1.out' 
-        });
+        if (enableMagnetism && window.innerWidth > 768) {
+          const magnetX = (x - centerX) * 0.025;
+          const magnetY = (y - centerY) * 0.025;
+          magnetismAnimationRef.current = gsap.to(element, { 
+            x: magnetX, 
+            y: magnetY, 
+            duration: 0.25, 
+            ease: 'power1.out' 
+          });
+        }
       }
     };
 

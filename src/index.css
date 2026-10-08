@@ -1,58 +1,102 @@
 @import "tailwindcss";
 
+:root {
+  --color-bg-base: #f8fafc;
+  --color-surface-1: #ffffff;
+  --color-surface-2: #f1f5f9;
+  --color-border-subtle: rgba(15, 23, 42, 0.08);
+  --color-border-strong: rgba(15, 23, 42, 0.16);
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-accent-azure: #2563eb;
+  --color-accent-cyan: #06b6d4;
+  --color-focus-ring: #2563eb;
+}
+
+html.dark {
+  --color-bg-base: #06090f;
+  --color-surface-1: #0d131f;
+  --color-surface-2: #141c2e;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-accent-azure: #3b82f6;
+  --color-accent-cyan: #22d3ee;
+  --color-focus-ring: #60a5fa;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: light dark;
   }
 
   body {
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: var(--color-bg-base);
+    color: var(--color-text-primary);
     font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  html.dark body {
-    background-color: #080c14;
-    color: #f1f5f9;
-  }
-
-  h1, h2, h3, h4 {
+  h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   p {
     text-wrap: pretty;
   }
 
-  .font-mono, [data-tabular="true"] {
+  /* Universal tabular figures for data & latencies */
+  .font-mono, [data-tabular="true"], .tabular-nums {
     font-variant-numeric: tabular-nums;
+  }
+
+  /* High contrast accessible focus rings */
+  :focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Tactile button feel */
+  button:active:not(:disabled) {
+    transform: translateY(1px) scale(0.99);
   }
 }
 
-/* Custom crisp scrollbar */
+/* Reduced motion accessibility contract */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom crisp industrial scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-html.dark ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: var(--color-bg-base);
 }
 
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #1e293b;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -60,9 +104,8 @@ html.dark ::-webkit-scrollbar-thumb {
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #334155;
 }
-
 
 /* Formal Print Optimization for Legal Notices and Court Pleadings */
 @media print {
@@ -71,7 +114,7 @@ html.dark ::-webkit-scrollbar-thumb:hover {
     color: #000000 !important;
   }
 
-  header, nav, button, .magic-btn, .spotlight-overlay, .border-glow, footer {
+  header, nav, button, .magic-btn, .spotlight-overlay, .border-glow, footer, [data-noprint="true"] {
     display: none !important;
   }
 

@@ -79,7 +79,7 @@ export const AssistantView = ({ selectedScenarioQuery, onClearSelectedQuery }) =
   };
 
   return (
-    <div className={`h-[calc(100vh-4rem)] flex flex-col lg:flex-row overflow-hidden ${
+    <div className={`min-h-[calc(100dvh-4rem)] lg:h-[calc(100dvh-4rem)] flex flex-col lg:flex-row overflow-hidden ${
       isDark ? 'bg-[#090d16] text-slate-100' : 'bg-slate-100 text-slate-900'
     }`}>
       
@@ -213,17 +213,25 @@ export const AssistantView = ({ selectedScenarioQuery, onClearSelectedQuery }) =
               rows="5"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && query.trim() && !isLoading) {
+                  e.preventDefault();
+                  handleExecuteQuery();
+                }
+              }}
               placeholder="State your factual situation: matter type, desired objective, state/jurisdiction, current stage, dates, available documents, and opposite parties..."
               className={`w-full border rounded-md p-3 text-xs leading-relaxed font-sans focus:outline-none transition-colors ${
                 isDark 
-                  ? 'bg-slate-950 border-slate-800 text-white placeholder-slate-500 focus:border-slate-600' 
-                  : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-400 focus:border-slate-400'
+                  ? 'bg-slate-950 border-slate-800 text-white placeholder-slate-500 focus:border-blue-500' 
+                  : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-400 focus:border-blue-600'
               }`}
             />
 
             <div className="flex items-center justify-between pt-1">
-              <span className="text-[11px] font-mono text-slate-400">
-                Grounding: Step 9 & 10 Protocol
+              <span className="text-[10px] font-mono text-slate-400 flex items-center space-x-1">
+                <span>Grounding: 10-Step</span>
+                <span>•</span>
+                <span>Press <kbd className="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-[9px] font-sans">Ctrl+Enter</kbd></span>
               </span>
 
               <MagicButton

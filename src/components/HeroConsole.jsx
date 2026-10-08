@@ -13,9 +13,18 @@ import { MagicBox, MagicButton } from './magic/index.js';
 import { ThreeSpatialHero } from './canvas/ThreeSpatialHero.jsx';
 import { BasementMarquee } from './ui/BasementMarquee.jsx';
 import { Cpu, Terminal } from 'lucide-react';
+import { animateStaggeredEntrance } from '../utils/motion.js';
 
 export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount }) => {
   const { isDark } = useTheme();
+
+  React.useEffect(() => {
+    animateStaggeredEntrance('.hero-case-card', {
+      delay: 200,
+      staggerDelay: 70,
+      duration: 420
+    });
+  }, []);
 
   const cases = [
     {
@@ -298,7 +307,7 @@ export const HeroConsole = ({ onSelectQuery, onNavigateToView, activeDocCount })
                     enableTilt={true}
                     clickEffect={true}
                     onClick={() => onSelectQuery(c.query)}
-                    className={`p-3 border rounded-md cursor-pointer transition-colors flex items-center justify-between text-xs ${
+                    className={`hero-case-card p-3 border rounded-md cursor-pointer transition-colors flex items-center justify-between text-xs ${
                       isDark 
                         ? 'bg-slate-900/60 border-slate-800' 
                         : 'bg-slate-50 border-slate-200'
